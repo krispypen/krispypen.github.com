@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Kris Pypen</title>
+  <title>Compile NodeJS for your N900 - Kris Pypen</title>
   <meta name="author" content="Kris Pypen">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://krispypen.github.com/">
+  <link rel="canonical" href="http://krispypen.github.com/blog/2012/10/07/compile-nodejs-for-your-n900/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -74,15 +74,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/10/07/compile-nodejs-for-your-n900/">Compile NodeJS for Your N900</a></h1>
+      <h1 class="entry-title">Compile NodeJS for Your N900</h1>
     
     
       <p class="meta">
@@ -105,25 +102,121 @@
   </header>
 
 
-  <div class="entry-content"><p>This is how you can compile <a href="http://nodejs.org">NodeJS</a> on your N900 Mobile Phone. The Nokia N900 is an ARMv7 device, so this tutorial will maybe also help to build it for other ARMv7 devices (like the Galaxy S3 Tizen version).</p>
+<div class="entry-content"><p>This is how you can compile <a href="http://nodejs.org">NodeJS</a> on your N900 Mobile Phone. The Nokia N900 is an ARMv7 device, so this tutorial will maybe also help to build it for other ARMv7 devices (like the Galaxy S3 Tizen version).</p>
+
+<!-- more -->
+
+
+<p>First you need to have the <a href="http://wiki.maemo.org/Documentation/Maemo_5_Final_SDK_Installation">Maemo SDK</a>.</p>
+
+<p>Then you can login into it:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>&gt; /scratchbox/login
+</span><span class='line'><span class="o">[</span>sbox-FREMANTLE_X86: ~<span class="o">]</span> &gt; sb-conf <span class="k">select </span>FREMANTLE_ARMEL
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Make sure you have python 2.5 (or higher):<br/>
+In your scratchbox:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>fakeroot apt-get install python2.5
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then outside the scratchbox I needed to remove the python symlink to make python2.5 the default:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rm /scratchbox/devkits/python-legacy/bin/python
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Download the latest NodeJS</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget <span class="s2">&quot;http://nodejs.org/dist/v0.8.11/node-v0.8.11.tar.gz&quot;</span>
+</span><span class='line'>tar -xvf node-v0.8.11.tar.gz
+</span><span class='line'><span class="nb">cd </span>node-v0.8.11
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Add these 2 lines at the top inside the variables section in &#8220;deps/v8/build/common.gypi&#8221;:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'> <span class="s">&#39;armv7%&#39;</span><span class="l-Scalar-Plain">:&#39;1&#39;,</span>
+</span><span class='line'> <span class="l-Scalar-Plain">&#39;arm_neon%&#39;:&#39;1&#39;,</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Compile:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">LINK</span><span class="o">=</span>g++
+</span><span class='line'>./configure --without-snapshot
+</span><span class='line'>make
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now you can copy &#8220;out/Release/node&#8221; to your N900 and start having fun with NodeJS!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kris Pypen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-07T10:13:00+02:00" pubdate data-updated="true">Oct 7<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://krispypen.github.com/blog/2012/10/07/compile-nodejs-for-your-n900/" data-via="krispypen" data-counturl="http://krispypen.github.com/blog/2012/10/07/compile-nodejs-for-your-n900/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/10/07/compile-nodejs-for-your-n900/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -140,7 +233,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/krispypen">@krispypen</a> on GitHub
@@ -170,7 +263,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -190,6 +283,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -204,7 +298,10 @@
       var disqus_shortname = 'krispypen';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://krispypen.github.com/blog/2012/10/07/compile-nodejs-for-your-n900/';
+        var disqus_url = 'http://krispypen.github.com/blog/2012/10/07/compile-nodejs-for-your-n900/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
