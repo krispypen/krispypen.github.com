@@ -122,14 +122,14 @@
 In your scratchbox:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>fakeroot apt-get install python2.5
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>sbox-FREMANTLE_ARMEL: ~<span class="o">]</span> &gt; fakeroot apt-get install python2.5
 </span></code></pre></td></tr></table></div></figure>
 
 
 <p>Then outside the scratchbox I needed to remove the python symlink to make python2.5 the default:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo rm /scratchbox/devkits/python-legacy/bin/python
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>&gt; sudo rm /scratchbox/devkits/python-legacy/bin/python
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -138,9 +138,9 @@ In your scratchbox:</p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>wget <span class="s2">&quot;http://nodejs.org/dist/v0.8.11/node-v0.8.11.tar.gz&quot;</span>
-</span><span class='line'>tar -xvf node-v0.8.11.tar.gz
-</span><span class='line'><span class="nb">cd </span>node-v0.8.11
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>sbox-FREMANTLE_ARMEL: ~<span class="o">]</span> &gt; wget <span class="s2">&quot;http://nodejs.org/dist/v0.8.11/node-v0.8.11.tar.gz&quot;</span>
+</span><span class='line'><span class="o">[</span>sbox-FREMANTLE_ARMEL: ~<span class="o">]</span> &gt; tar -xvf node-v0.8.11.tar.gz
+</span><span class='line'><span class="o">[</span>sbox-FREMANTLE_ARMEL: ~<span class="o">]</span> &gt; <span class="nb">cd </span>node-v0.8.11
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -158,9 +158,9 @@ In your scratchbox:</p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">export </span><span class="nv">LINK</span><span class="o">=</span>g++
-</span><span class='line'>./configure --without-snapshot
-</span><span class='line'>make
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="o">[</span>sbox-FREMANTLE_ARMEL: ~<span class="o">]</span> &gt; <span class="nb">export </span><span class="nv">LINK</span><span class="o">=</span>g++
+</span><span class='line'><span class="o">[</span>sbox-FREMANTLE_ARMEL: ~<span class="o">]</span> &gt; ./configure --without-snapshot
+</span><span class='line'><span class="o">[</span>sbox-FREMANTLE_ARMEL: ~<span class="o">]</span> &gt; make
 </span></code></pre></td></tr></table></div></figure>
 
 
