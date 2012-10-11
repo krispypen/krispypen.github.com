@@ -4,7 +4,7 @@
   <title><![CDATA[Kris Pypen]]></title>
   <link href="http://krispypen.github.com/atom.xml" rel="self"/>
   <link href="http://krispypen.github.com/"/>
-  <updated>2012-10-07T11:20:54+02:00</updated>
+  <updated>2012-10-11T14:01:07+02:00</updated>
   <id>http://krispypen.github.com/</id>
   <author>
     <name><![CDATA[Kris Pypen]]></name>
@@ -81,6 +81,8 @@ In your scratchbox:</p>
 
 
 <p>Now you can copy &#8220;out/Release/node&#8221; to your N900 and start having fun with NodeJS!</p>
+
+<p>I created a github repository where we can put some code snippets: <a href="https://github.com/krispypen/NodeJSForMaemoSnippets">https://github.com/krispypen/NodeJSForMaemoSnippets</a></p>
 ]]></content>
   </entry>
   
