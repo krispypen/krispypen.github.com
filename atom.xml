@@ -4,7 +4,7 @@
   <title><![CDATA[Kris Pypen]]></title>
   <link href="http://krispypen.github.com/atom.xml" rel="self"/>
   <link href="http://krispypen.github.com/"/>
-  <updated>2012-10-11T14:01:07+02:00</updated>
+  <updated>2012-10-13T13:16:09+02:00</updated>
   <id>http://krispypen.github.com/</id>
   <author>
     <name><![CDATA[Kris Pypen]]></name>
@@ -18,7 +18,7 @@
     <link href="http://krispypen.github.com/blog/2012/10/07/compile-nodejs-for-your-n900/"/>
     <updated>2012-10-07T10:13:00+02:00</updated>
     <id>http://krispypen.github.com/blog/2012/10/07/compile-nodejs-for-your-n900</id>
-    <content type="html"><![CDATA[<p>This is how you can compile <a href="http://nodejs.org">NodeJS</a> on your N900 Mobile Phone. The Nokia N900 is an ARMv7 device, so this tutorial will maybe also help to build it for other ARMv7 devices (like the Galaxy S3 Tizen version).</p>
+    <content type="html"><![CDATA[<p>This is how you can compile <a href="http://nodejs.org">NodeJS</a> on your N900 Maemo Mobile Phone. The Nokia N900 is an ARMv7 device, so this tutorial will maybe also help to build it for other ARMv7 devices (like the Galaxy S3 Tizen version).</p>
 
 <!-- more -->
 
