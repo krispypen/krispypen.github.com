@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Kris Pypen</title>
+  <title>Create an html5 based OS - Kris Pypen</title>
   <meta name="author" content="Kris Pypen">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://krispypen.github.com/">
+  <link rel="canonical" href="http://krispypen.github.com/blog/2012/10/27/create-an-html5-based-os/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -74,15 +74,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/10/27/create-an-html5-based-os/">Create an Html5 Based OS</a></h1>
+      <h1 class="entry-title">Create an Html5 Based OS</h1>
     
     
       <p class="meta">
@@ -105,29 +102,47 @@
   </header>
 
 
-  <div class="entry-content"><p>Offcourse this is not a full tutorial how you can create a new OS. This is a simple proof of concept explaining how &#8220;easy&#8221; it can be these days.</p>
+<div class="entry-content"><p>Offcourse this is not a full tutorial how you can create a new OS. This is a simple proof of concept explaining how &#8220;easy&#8221; it can be these days.</p>
 
+<!-- more -->
+
+
+<p>Alsmost every phone can run a webkit browser. And on some its possible to run only a webkit browser and nothing else (see nemo mobile). This is the reason I started to create a proof of concept of my favorite user interface: Maemo. I called it WaemoJS. It uses html5 to create the gui based on Maemo, and it uses nodejs for getting system things like battery status, talking to the phone controller, reading the filesystem, taking a picture. These functions are not yet implemented at the time of writing :).</p>
+
+<h4>Demo on a desktop:<br/></h4>
+
+<p>First you must install <a href="https://github.com/rogerwang/node-webkit">node-webkit</a>, then get and run the WaemoJS app:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>&gt; git clone --recursive https://github.com/krispypen/WaemoJS.git
+</span><span class='line'><span class="nv">$ </span>&gt; <span class="nb">cd </span>WaemoJS
+</span><span class='line'><span class="nv">$ </span>&gt; /Path/To/nw .
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>Screenshots:</h4>
+
+<p>Home screen:
+<img class="center" src="https://raw.github.com/krispypen/WaemoJS/master/screenshots/screenshot1.png">
+Application menu:
+<img class="center" src="https://raw.github.com/krispypen/WaemoJS/master/screenshots/screenshot2.png">
+Calculator app:
+<img class="center" src="https://raw.github.com/krispypen/WaemoJS/master/screenshots/screenshot3.png">
+Running apps switcher:
+<img class="center" src="https://raw.github.com/krispypen/WaemoJS/master/screenshots/screenshot4.png"></p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/10/27/create-an-html5-based-os/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/10/07/compile-nodejs-for-your-n900/">Compile NodeJS for Your N900</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kris Pypen</span></span>
+
+      
 
 
 
@@ -139,32 +154,38 @@
   
 
 
-<time datetime="2012-10-07T10:13:00+02:00" pubdate data-updated="true">Oct 7<span>th</span>, 2012</time>
-        
-      </p>
+<time datetime="2012-10-27T16:22:00+02:00" pubdate data-updated="true">Oct 27<span>th</span>, 2012</time>
+      
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://krispypen.github.com/blog/2012/10/27/create-an-html5-based-os/" data-via="krispypen" data-counturl="http://krispypen.github.com/blog/2012/10/27/create-an-html5-based-os/" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/10/07/compile-nodejs-for-your-n900/" title="Previous Post: Compile NodeJS for your N900">&laquo; Compile NodeJS for your N900</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><p>This is how you can compile <a href="http://nodejs.org">NodeJS</a> on your N900 Maemo Mobile Phone. The Nokia N900 is an ARMv7 device, so this tutorial will maybe also help to build it for other ARMv7 devices (like the Galaxy S3 Tizen version).</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/10/07/compile-nodejs-for-your-n900/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -185,7 +206,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/krispypen">@krispypen</a> on GitHub
@@ -215,7 +236,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -235,6 +256,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -249,7 +271,10 @@
       var disqus_shortname = 'krispypen';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://krispypen.github.com/blog/2012/10/27/create-an-html5-based-os/';
+        var disqus_url = 'http://krispypen.github.com/blog/2012/10/27/create-an-html5-based-os/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
