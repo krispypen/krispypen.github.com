@@ -4,7 +4,7 @@
   <title><![CDATA[Kris Pypen]]></title>
   <link href="http://krispypen.github.com/atom.xml" rel="self"/>
   <link href="http://krispypen.github.com/"/>
-  <updated>2012-10-27T16:51:56+02:00</updated>
+  <updated>2012-10-27T17:06:32+02:00</updated>
   <id>http://krispypen.github.com/</id>
   <author>
     <name><![CDATA[Kris Pypen]]></name>
@@ -37,6 +37,10 @@
 </span><span class='line'><span class="nv">$ </span>&gt; /Path/To/nw .
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h4>Source:</h4>
+
+<p><a href="https://github.com/krispypen/WaemoJS">https://github.com/krispypen/WaemoJS</a></p>
 
 <h4>Screenshots:</h4>
 
