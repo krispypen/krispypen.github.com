@@ -1,8 +1,28 @@
 <html>
-<body>
+  <body>
   <div style="text-align: center; padding-top: 40px;">
-  <h1>Dit is een bank.</h1>
-  <h2><a href="didid:/?status=success">volgende</a></h2>
+    <h1>Dit is het scherm van de bank <span id="bankId"></span>.</h1>
+    <h5>Taal: <span id="language"></span></h5>
+    <h5>Scopes: <span id="scopes"></span></h5>
+    <h5>AccountFamily: <span id="accountFamily"></span></h5>
+    <h2><a id="redirectUrl" href="didid:/?status=success">volgende</a></h2>
   </div>
+  <script>
+    function getRequestParams() {
+       var s1 = location.search.substring(1, location.search.length).split('&'),
+       r = {}, s2, i;
+       for (i = 0; i < s1.length; i += 1) {
+         s2 = s1[i].split('=');
+         r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+       }
+       return r;
+    };
+    var RequestParams = getRequestParams();
+    document.getElementById('redirectUrl').href = RequestParams["redirect_uri"] + '?code=1234567890';
+   document.getElementById('bankId').textContent = RequestParams["brand"];
+   document.getElementById('language').textContent = RequestParams["language"];
+   document.getElementById('scopes').textContent = RequestParams["language"];
+   document.getElementById('accountFamily').textContent = RequestParams["language"];
+   </script>
 </body>
 </html>
