@@ -18,7 +18,7 @@
        return r;
     };
     var RequestParams = getRequestParams();
-    document.getElementById('redirectUrl').href = RequestParams["redirect_uri"] + '?code=1234567890';
+    document.getElementById('redirectUrl').href = RequestParams["redirect_uri"] + '?code=1234567890&state='+RequestParams["state"];
    document.getElementById('bankId').textContent = RequestParams["brand"];
    document.getElementById('language').textContent = RequestParams["language"];
    document.getElementById('scopes').textContent = RequestParams["language"];
