@@ -1,0 +1,31 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "R8YZ2WPVP5.be.degroof.mydegroofpetercam",
+        "paths": [
+          "/login"
+        ]
+      },
+      {
+        "appID": "U3KS97K4W3.com.investsuite.bdp.int",
+        "paths": [
+          "*"
+        ]
+      },
+      {
+        "appID": "U3KS97K4W3.com.investsuite.bdp.tst",
+        "paths": [
+          "/tst"
+        ]
+      },
+      {
+        "appID": "U3KS97K4W3.com.investsuite.bdp.uat",
+        "paths": [
+          "*"
+        ]
+      }
+    ]
+  }
+}
