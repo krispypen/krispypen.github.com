@@ -225,13 +225,13 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
         'company': 'InvestSuite',
         'period': 'Current',
         'description': 'Developing innovative financial applications using Flutter',
-        'icon': Icons.business,
+        'icon': 'assets/images/flutter-logo.png',
       },
       {
         'title': 'Co-owner & Developer',
         'company': 'ijsjesradar.app',
         'period': 'Current',
-        'description': 'Ice cream radar app for finding the best ice cream spots',
+        'description': 'Ice cream radar app for getting notified when an ice cream truck is nearby',
         'icon': 'assets/images/ijsjesradar-app-icon.png',
       },
       {
@@ -239,7 +239,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
         'company': 'Flutter Belgium',
         'period': '2018 - Current',
         'description': 'Organizing monthly Flutter meetups and community events',
-        'icon': Icons.groups,
+        'icon': 'assets/images/flutterbelgium-app-icon.png',
       },
       {
         'title': 'Android Developer',
