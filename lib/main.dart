@@ -368,14 +368,14 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
     final projects = [
       {
         'title': 'ijsjesradar.app',
-        'description': 'Ice cream radar app helping users find the best ice cream spots',
+        'description': 'Ice cream radar app for getting notified when an ice cream truck is nearby',
         'url': 'https://ijsjesradar.app/',
         'icon': 'assets/images/ijsjesradar-app-icon.png',
         'color': Colors.pink,
       },
       {
         'title': 'Flutter Belgium Meetup',
-        'description': 'Monthly Flutter community meetups and events',
+        'description': 'Flutter community meetups in Belgium',
         'url': 'https://www.meetup.com/flutter-belgium/',
         'icon': 'assets/images/flutterbelgium-app-icon.png',
         'color': Colors.blue,
