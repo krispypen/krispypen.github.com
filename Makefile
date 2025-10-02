@@ -11,5 +11,5 @@ all: build
 # The 'build' target executes the fvm flutter build command.
 build:
 	@echo "Building Flutter web application with WASM..."
-	fvm flutter build web --wasm
+	fvm flutter build web --wasm -o docs
 	@echo "Build complete."
