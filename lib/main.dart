@@ -15,9 +15,10 @@ class MyApp extends StatelessWidget {
       title: 'Kris Pypen - Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6366F1), brightness: Brightness.dark),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0175C2), brightness: Brightness.dark),
         useMaterial3: true,
         fontFamily: 'Inter',
+        scaffoldBackgroundColor: const Color(0xFF0A0E27),
       ),
       home: const PortfolioHomePage(),
     );
@@ -33,28 +34,22 @@ class PortfolioHomePage extends StatefulWidget {
 
 class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProviderStateMixin {
   late AnimationController _heroController;
-  late AnimationController _fadeController;
   late Animation<double> _heroAnimation;
 
   @override
   void initState() {
     super.initState();
-    _heroController = AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    _fadeController = AnimationController(duration: const Duration(milliseconds: 1500), vsync: this);
-
+    _heroController = AnimationController(duration: const Duration(seconds: 1), vsync: this);
     _heroAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(CurvedAnimation(parent: _heroController, curve: Curves.easeOutCubic));
-
     _heroController.forward();
-    _fadeController.forward();
   }
 
   @override
   void dispose() {
     _heroController.dispose();
-    _fadeController.dispose();
     super.dispose();
   }
 
@@ -77,85 +72,80 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
 
   Widget _buildHeroSection() {
     return Container(
-      constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
-      decoration: BoxDecoration(
+      constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height * 0.8),
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Theme.of(context).colorScheme.primary,
-            Theme.of(context).colorScheme.secondary,
-            Theme.of(context).colorScheme.tertiary,
-          ],
+          colors: [Color(0xFF0A0E27), Color(0xFF1A1F3A), Color(0xFF0A0E27)],
         ),
       ),
-      child: Center(
-        child: AnimatedBuilder(
-          animation: _heroAnimation,
-          builder: (context, child) {
-            return Transform.translate(
-              offset: Offset(0, 50 * (1 - _heroAnimation.value)),
-              child: Opacity(
+      child: SafeArea(
+        child: Center(
+          child: AnimatedBuilder(
+            animation: _heroAnimation,
+            builder: (context, child) {
+              return Opacity(
                 opacity: _heroAnimation.value,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          colors: [Colors.white.withValues(alpha: 0.2), Colors.white.withValues(alpha: 0.1)],
+                child: Transform.translate(
+                  offset: Offset(0, 30 * (1 - _heroAnimation.value)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(color: const Color(0xFF0175C2).withValues(alpha: 0.3), width: 2),
                         ),
-                        border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 2),
+                        child: const Icon(Icons.code, size: 80, color: Color(0xFF0175C2)),
                       ),
-                      child: const Icon(Icons.code, size: 100, color: Colors.white),
-                    ),
-                    const SizedBox(height: 30),
-                    const Text(
-                      'Kris Pypen',
-                      style: TextStyle(
-                        fontSize: 48,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        letterSpacing: 2,
+                      const SizedBox(height: 40),
+                      const Text(
+                        'Kris Pypen',
+                        style: TextStyle(
+                          fontSize: 56,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: -0.5,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Flutter Developer & Mobile Enthusiast',
-                      style: TextStyle(fontSize: 24, color: Colors.white70, letterSpacing: 1),
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        _buildSocialButton(
-                          icon: Icons.work,
-                          label: 'LinkedIn',
-                          uri: Uri.parse('https://www.linkedin.com/in/krispypen/'),
-                        ),
-                        const SizedBox(width: 20),
-                        _buildSocialButton(
-                          icon: Icons.code,
-                          label: 'GitHub',
-                          uri: Uri.parse('https://github.com/krispypen'),
-                        ),
-                        const SizedBox(width: 20),
-                        _buildSocialButton(
-                          icon: Icons.chat,
-                          label: 'Bluesky',
-                          uri: Uri.parse('https://bsky.app/profile/krispypen.bsky.social'),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                  ],
+                      const SizedBox(height: 16),
+                      const Text(
+                        'Flutter Developer & Mobile Enthusiast',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 20, color: Color(0xFF9CA3AF), letterSpacing: 0),
+                      ),
+                      const SizedBox(height: 40),
+                      Wrap(
+                        spacing: 16,
+                        runSpacing: 16,
+                        alignment: WrapAlignment.center,
+                        children: [
+                          _buildSocialButton(
+                            icon: Icons.work,
+                            label: 'LinkedIn',
+                            uri: Uri.parse('https://www.linkedin.com/in/krispypen/'),
+                          ),
+                          _buildSocialButton(
+                            icon: Icons.code,
+                            label: 'GitHub',
+                            uri: Uri.parse('https://github.com/krispypen'),
+                          ),
+                          _buildSocialButton(
+                            icon: Icons.chat,
+                            label: 'Bluesky',
+                            uri: Uri.parse('https://bsky.app/profile/krispypen.bsky.social'),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -169,20 +159,20 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
         child: GestureDetector(
           onTap: followLink,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all(color: Colors.white.withValues(alpha: 0.3)),
+              color: const Color(0xFF1A1F3A),
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: const Color(0xFF0175C2).withValues(alpha: 0.3), width: 1),
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(icon, color: Colors.white, size: 20),
+                Icon(icon, color: const Color(0xFF0175C2), size: 18),
                 const SizedBox(width: 8),
                 Text(
                   label,
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14),
                 ),
               ],
             ),
@@ -194,24 +184,22 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
 
   Widget _buildAboutSection() {
     return Container(
-      padding: const EdgeInsets.all(40),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      constraints: const BoxConstraints(maxWidth: 1200),
       child: Column(
         children: [
           const Text(
             'About Me',
-            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: -0.5),
           ),
-          const SizedBox(height: 30),
-          Container(
-            constraints: const BoxConstraints(maxWidth: 800),
-            child: const Text(
-              'Passionate Flutter developer with extensive experience in mobile and web development. '
-              'I love combining the best of both worlds to create amazing user experiences. '
-              'Currently working at InvestSuite and co-owner of ijsjesradar.app. '
-              'Organizer of Flutter Belgium Meetup since 2018, helping to build and grow the Flutter community.',
-              style: TextStyle(fontSize: 18, color: Colors.white70, height: 1.6),
-              textAlign: TextAlign.center,
-            ),
+          const SizedBox(height: 24),
+          const Text(
+            'Passionate Flutter developer with extensive experience in mobile and web development. '
+            'I love combining the best of both worlds to create amazing user experiences. '
+            'Currently working at InvestSuite and co-owner of ijsjesradar.app. '
+            'Organizer of Flutter Belgium Meetup since 2018, helping to build and grow the Flutter community.',
+            style: TextStyle(fontSize: 18, color: Color(0xFF9CA3AF), height: 1.7),
+            textAlign: TextAlign.center,
           ),
         ],
       ),
@@ -265,25 +253,35 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
     ];
 
     return Container(
-      padding: const EdgeInsets.all(40),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      constraints: const BoxConstraints(maxWidth: 1200),
       child: Column(
         children: [
           const Text(
             'Experience',
-            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: -0.5),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 48),
           LayoutBuilder(
             builder: (context, constraints) {
-              return Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                children: experiences.map((experience) {
-                  return SizedBox(
-                    width: constraints.maxWidth > 800 ? (constraints.maxWidth - 60) / 2 : constraints.maxWidth - 80,
-                    child: _buildExperienceCard(experience),
-                  );
-                }).toList(),
+              final crossAxisCount = constraints.maxWidth > 900
+                  ? 3
+                  : constraints.maxWidth > 600
+                  ? 2
+                  : 1;
+              return GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: crossAxisCount,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                  childAspectRatio: 1.25,
+                ),
+                itemCount: experiences.length,
+                itemBuilder: (context, index) {
+                  return _buildExperienceCard(experiences[index]);
+                },
               );
             },
           ),
@@ -294,25 +292,18 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
 
   Widget _buildExperienceCard(Map<String, dynamic> experience) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
-            Theme.of(context).colorScheme.secondary.withValues(alpha: 0.3),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.2), width: 1),
+        color: const Color(0xFF1A1F3A),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF0175C2).withValues(alpha: 0.2), width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildExperienceIcon(experience['icon']),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           Text(
             experience['title'] as String,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
@@ -322,25 +313,23 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
           const SizedBox(height: 4),
           Text(
             experience['company'] as String,
-            style: TextStyle(fontSize: 14, color: Colors.white.withValues(alpha: 0.8), fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 14, color: Color(0xFF0175C2), fontWeight: FontWeight.w500),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
           Text(
             experience['period'] as String,
-            style: TextStyle(fontSize: 12, color: Colors.white.withValues(alpha: 0.6)),
+            style: const TextStyle(fontSize: 12, color: Color(0xFF9CA3AF)),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: 8),
-          Flexible(
-            child: Text(
-              experience['description'] as String,
-              style: TextStyle(fontSize: 13, color: Colors.white.withValues(alpha: 0.7), height: 1.3),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
+          const SizedBox(height: 12),
+          Text(
+            experience['description'] as String,
+            style: const TextStyle(fontSize: 14, color: Color(0xFF9CA3AF), height: 1.5),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
@@ -349,23 +338,37 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
 
   Widget _buildExperienceIcon(dynamic icon) {
     if (icon is String) {
-      // Handle image path
       return Container(
-        width: 32,
-        height: 32,
+        width: 40,
+        height: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           image: DecorationImage(image: AssetImage(icon), fit: BoxFit.cover),
         ),
       );
     } else {
-      // Handle IconData
-      return Icon(icon as IconData, color: Colors.white, size: 32);
+      return Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: const Color(0xFF0175C2).withValues(alpha: 0.2),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Icon(icon as IconData, color: const Color(0xFF0175C2), size: 24),
+      );
     }
   }
 
   Widget _buildProjectsSection() {
     final projects = [
+      {
+        'title': 'Flutter Embedding',
+        'description':
+            'Transform your Flutter application into an embeddable module for iOS, Android, React Native, React Web, and Angular — with type-safe Protocol Buffer communication.',
+        'url': 'https://krispypen.be/flutter_embedding',
+        'icon': 'assets/images/flutter-logo.png',
+        'color': const Color(0xFF0175C2),
+      },
       {
         'title': 'ijsjesradar.app',
         'description': 'Ice cream radar app for getting notified when an ice cream truck is nearby',
@@ -390,14 +393,20 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
     ];
 
     return Container(
-      padding: const EdgeInsets.all(40),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      constraints: const BoxConstraints(maxWidth: 1200),
       child: Column(
         children: [
           const Text(
             'Featured Projects',
-            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: -0.5),
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 16),
+          const Text(
+            'Projects I\'ve worked on and contributed to',
+            style: TextStyle(fontSize: 18, color: Color(0xFF9CA3AF)),
+          ),
+          const SizedBox(height: 48),
           AnimationLimiter(
             child: Column(
               children: List.generate(projects.length, (index) {
@@ -419,29 +428,26 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
 
   Widget _buildProjectCard(Map<String, dynamic> project) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 20),
-      padding: const EdgeInsets.all(30),
+      margin: const EdgeInsets.only(bottom: 24),
+      padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            (project['color'] as Color).withValues(alpha: 0.2),
-            (project['color'] as Color).withValues(alpha: 0.1),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: (project['color'] as Color).withValues(alpha: 0.3), width: 1),
+        color: const Color(0xFF1A1F3A),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: (project['color'] as Color).withValues(alpha: 0.2), width: 1),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             width: 80,
             height: 80,
-            decoration: BoxDecoration(color: project['color'] as Color, borderRadius: BorderRadius.circular(15)),
+            decoration: BoxDecoration(
+              color: (project['color'] as Color).withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
             child: _buildProjectIcon(project['icon'], project['color'] as Color),
           ),
-          const SizedBox(width: 20),
+          const SizedBox(width: 24),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -450,21 +456,30 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
                   project['title'] as String,
                   style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 12),
                 Text(
                   project['description'] as String,
-                  style: TextStyle(fontSize: 16, color: Colors.white.withValues(alpha: 0.8), height: 1.4),
+                  style: const TextStyle(fontSize: 16, color: Color(0xFF9CA3AF), height: 1.6),
                 ),
               ],
             ),
           ),
+          const SizedBox(width: 16),
           Link(
             uri: Uri.parse(project['url'] as String),
             builder: (context, followLink) => MouseRegion(
               cursor: SystemMouseCursors.click,
-              child: IconButton(
-                onPressed: followLink,
-                icon: const Icon(Icons.open_in_new, color: Colors.white, size: 30),
+              child: GestureDetector(
+                onTap: followLink,
+                child: Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: (project['color'] as Color).withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: (project['color'] as Color).withValues(alpha: 0.3), width: 1),
+                  ),
+                  child: Icon(Icons.open_in_new, color: project['color'] as Color, size: 24),
+                ),
               ),
             ),
           ),
@@ -475,56 +490,58 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
 
   Widget _buildProjectIcon(dynamic icon, Color backgroundColor) {
     if (icon is String) {
-      // Handle image path - show the image with rounded corners
       return Container(
         width: 80,
         height: 80,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(12),
           image: DecorationImage(image: AssetImage(icon), fit: BoxFit.cover),
         ),
       );
     } else {
-      // Handle IconData - show icon with background color
       return Container(
         width: 80,
         height: 80,
-        decoration: BoxDecoration(color: backgroundColor, borderRadius: BorderRadius.circular(15)),
-        child: Icon(icon as IconData, color: Colors.white, size: 40),
+        decoration: BoxDecoration(
+          color: backgroundColor.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Icon(icon as IconData, color: backgroundColor, size: 40),
       );
     }
   }
 
   Widget _buildContactSection() {
     return Container(
-      padding: const EdgeInsets.all(40),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 80),
+      constraints: const BoxConstraints(maxWidth: 1200),
       child: Column(
         children: [
           const Text(
             'Get In Touch',
-            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: Colors.white, letterSpacing: -0.5),
           ),
-          const SizedBox(height: 20),
-          const Text('Feel free to reach out and connect!', style: TextStyle(fontSize: 18, color: Colors.white70)),
-          const SizedBox(height: 40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          const SizedBox(height: 16),
+          const Text('Feel free to reach out and connect!', style: TextStyle(fontSize: 18, color: Color(0xFF9CA3AF))),
+          const SizedBox(height: 48),
+          Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            alignment: WrapAlignment.center,
             children: [
               _buildContactButton(icon: Icons.email, label: 'Email', uri: Uri.parse('mailto:krispypen@gmail.com')),
-              const SizedBox(width: 20),
               _buildContactButton(
                 icon: Icons.work,
                 label: 'LinkedIn',
                 uri: Uri.parse('https://www.linkedin.com/in/krispypen/'),
               ),
-              const SizedBox(width: 20),
               _buildContactButton(icon: Icons.code, label: 'GitHub', uri: Uri.parse('https://github.com/krispypen')),
             ],
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 64),
           Text(
             '© ${DateTime.now().year} Kris Pypen. Built with Flutter 💙',
-            style: TextStyle(color: Colors.white.withValues(alpha: 0.6), fontSize: 14),
+            style: const TextStyle(color: Color(0xFF6B7280), fontSize: 14),
           ),
         ],
       ),
@@ -539,25 +556,23 @@ class _PortfolioHomePageState extends State<PortfolioHomePage> with TickerProvid
         child: GestureDetector(
           onTap: followLink,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Theme.of(context).colorScheme.primary, Theme.of(context).colorScheme.secondary],
-              ),
-              borderRadius: BorderRadius.circular(30),
+              gradient: const LinearGradient(colors: [Color(0xFF0175C2), Color(0xFF025A8F)]),
+              borderRadius: BorderRadius.circular(8),
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
-                  blurRadius: 10,
-                  offset: const Offset(0, 5),
+                  color: const Color(0xFF0175C2).withValues(alpha: 0.3),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
                 ),
               ],
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(icon, color: Colors.white, size: 24),
-                const SizedBox(width: 10),
+                Icon(icon, color: Colors.white, size: 20),
+                const SizedBox(width: 12),
                 Text(
                   label,
                   style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 16),
