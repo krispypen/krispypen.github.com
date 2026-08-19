@@ -342,7 +342,13 @@ class _Sticker extends StatelessWidget {
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(radius - padding * 0.6),
-          child: Image.asset(asset, width: size, height: size, fit: BoxFit.cover),
+          child: Image.asset(
+            asset,
+            width: size,
+            height: size,
+            fit: BoxFit.cover,
+            alignment: Alignment.topCenter,
+          ),
         ),
       ),
     );
