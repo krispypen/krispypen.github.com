@@ -28,7 +28,7 @@ void main() {
   float aspect = uSize.x / uSize.y;
   vec2 p = vec2(uv.x * aspect, uv.y);
 
-  float t = uTime * 0.3;
+  float t = uTime * 1.0;
 
   vec3 col = kBase;
 
