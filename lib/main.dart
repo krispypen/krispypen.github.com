@@ -1,4 +1,7 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:url_launcher/link.dart';
 
 void main() {
@@ -367,6 +370,75 @@ class _Circle extends StatelessWidget {
   }
 }
 
+/// Slow-moving pastel mesh-gradient shader behind the hero.
+/// Falls back to the flat sky color while loading (or if shaders fail).
+class _HeroShaderBackground extends StatefulWidget {
+  const _HeroShaderBackground();
+
+  @override
+  State<_HeroShaderBackground> createState() => _HeroShaderBackgroundState();
+}
+
+class _HeroShaderBackgroundState extends State<_HeroShaderBackground>
+    with SingleTickerProviderStateMixin {
+  static Future<ui.FragmentProgram>? _programFuture;
+
+  ui.FragmentShader? _shader;
+  late final Ticker _ticker;
+  double _time = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _ticker = createTicker((elapsed) {
+      setState(() => _time = elapsed.inMicroseconds / 1e6);
+    });
+    _programFuture ??= ui.FragmentProgram.fromAsset('shaders/hero_background.frag');
+    _programFuture!.then(
+      (program) {
+        if (!mounted) return;
+        setState(() => _shader = program.fragmentShader());
+        _ticker.start();
+      },
+      onError: (Object _) {}, // keep the flat fallback
+    );
+  }
+
+  @override
+  void dispose() {
+    _ticker.dispose();
+    _shader?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final shader = _shader;
+    if (shader == null) return const ColoredBox(color: AppColors.sky);
+    return CustomPaint(painter: _ShaderPainter(shader, _time));
+  }
+}
+
+class _ShaderPainter extends CustomPainter {
+  _ShaderPainter(this.shader, this.time);
+
+  final ui.FragmentShader shader;
+  final double time;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    shader
+      ..setFloat(0, size.width)
+      ..setFloat(1, size.height)
+      ..setFloat(2, time);
+    canvas.drawRect(Offset.zero & size, Paint()..shader = shader);
+  }
+
+  @override
+  bool shouldRepaint(_ShaderPainter oldDelegate) =>
+      oldDelegate.time != time || oldDelegate.shader != shader;
+}
+
 class _HeroCollage extends StatelessWidget {
   const _HeroCollage();
 
@@ -465,8 +537,17 @@ class _Hero extends StatelessWidget {
       ],
     );
 
+    return Stack(
+      children: [
+        const Positioned.fill(child: RepaintBoundary(child: _HeroShaderBackground())),
+        _buildForeground(narrow, wide, content),
+      ],
+    );
+  }
+
+  Widget _buildForeground(bool narrow, bool wide, Widget content) {
     return _Band(
-      color: AppColors.sky,
+      color: Colors.transparent,
       vertical: 96,
       child: TweenAnimationBuilder<double>(
         tween: Tween(begin: 0, end: 1),
